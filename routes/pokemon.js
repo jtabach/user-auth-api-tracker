@@ -1,3 +1,7 @@
+//http://api.sportradar.us/nhl-t1/games/2015/reg/schedule.json?api_key=[your_api_key]
+
+
+
 
 var express = require('express');
 var router = express.Router();

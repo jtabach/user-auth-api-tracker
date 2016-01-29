@@ -2,6 +2,49 @@
 	display: none;
 }
 
-body {
-	background: red;
+.navbar {
+	margin-bottom: 0;
+}
+
+.container-fluid {
+	background: url('/img/ice-landing.jpg') no-repeat;
+	background-size: cover;
+	background-position: center top;
+	height: 700px;
+	font-family: 'Russo One', sans-serif;
+	text-align: center;
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	font-size: 60px;
+	letter-spacing: 10px;
+	margin-top: 30px;
+}
+
+.loginLand,
+.registerLand {
+	display: inline-block;
+	margin: 300px 50px 200px 50px;
+}
+
+.landings button {
+	background: transparent;
+	border: 10px solid white;
+	border-radius: 20px;
+	color: white;
+	width: 250px;
+	height: 80px;
+	font-size: 28px;
+	letter-spacing: 3px;
+}
+
+.landings button:hover {
+	color: #00ff00;
+	border-color: #00ff00;
+}
+
+.landings p {
+	color: white;
 }

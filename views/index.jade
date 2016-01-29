@@ -3,11 +3,17 @@ extends layout
 block styles
   link(rel='stylesheet', href='/css/style.css')
 block content
-  .container-fluid#landing
-    h1= title
-    p Welcome to #{title}
-
-
+  h1 NHL Fanatasy Team
+  .landings
+    .loginLand
+      p Welcome Back
+      a(href='/login')
+        button Login
+    .registerLand
+      p Don't Have An Account?
+      a(href='/register')
+        button Register
+.container-fluid#landingFooter
 
 
 block scripts

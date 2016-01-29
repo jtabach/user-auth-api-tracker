@@ -1,8 +1,10 @@
 doctype html
 html
   head
-    title Cade's App
+    title NHL FANTASY TEAM
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
+    link(href='https://fonts.googleapis.com/css?family=Russo+One', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='/css/style.css')
     block styles
   body
     nav.navbar.navbar-default.navbar-static-top
@@ -25,9 +27,9 @@ html
               a#login(href='/login') Login
             li
               a#logout(href='/users/logout') Logout
-
-    .container
+    .container-fluid
       block content
+
 
     script(src='/lib/jquery/dist/jquery.min.js')
     script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
