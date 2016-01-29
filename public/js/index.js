@@ -4,4 +4,4 @@ console.log('index.js!');
 
 var ref = new Firebase('https://user-diet-tracker.firebaseio.com/');
 
-ref.set('Woah');
+ref.set('A user is logged in');

@@ -3,7 +3,7 @@ html
   head
     title Cade's App
     link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/css/style.css')
+    block styles
   body
     nav.navbar.navbar-default.navbar-static-top
       .container
@@ -20,15 +20,16 @@ html
               a(href='/') Home
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='/register') Register
+              a#register(href='/register') Register
             li
-              a(href='/login') Login
+              a#login(href='/login') Login
             li
-              a(href='/users/logout') Logout
+              a#logout(href='/users/logout') Logout
 
     .container
       block content
 
     script(src='/lib/jquery/dist/jquery.min.js')
     script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src="/js/logout.js")
     block scripts

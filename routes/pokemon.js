@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 
@@ -7,7 +8,11 @@ router.use(authMiddleware);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // show my pokemon
+	// if(req.user){
+	return  res.render('pokemon', req.user);
+		
+	// }
+	// res.redirect('login');
 });
 
 router.post('/', function(req, res, next) {
