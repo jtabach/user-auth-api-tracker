@@ -27,3 +27,13 @@ textarea {
 #search {
 	background-color: #ffcccc;
 }
+
+.searchResultsLabel {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.searchResultsLabel:hover {
+	background-color: yellow;
+	cursor: pointer;
+}

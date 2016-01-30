@@ -1,16 +1,17 @@
-
+//Special Thanks to Sanath for search functionality
 $(function() {
 
   appendDom();
   $('button').on('click', getCharacter);
 	$('#search').keyup(populateText);
+  $('#searchResults').on("click",".searchResultsLabel",resultLabelClicked);
 });
 
 var matchingHeros;
 
 function getCharacter() {
-  if (matchingHeros.length > 0 && matchingHeros.length  <= 3 ) {
-  	$.post('/marvel/character', {id:matchingHeros[0].id})
+  if (typeof matchingHeros || matchingHeros.length > 0 && matchingHeros.length  <= 10 ) {
+  	$.post('/marvel/character', {id: (matchingHeros[0]) ? matchingHeros[0].id : matchingHeros.id})
   	.success(function(char){
   		appendDom();
   	})
@@ -49,14 +50,24 @@ function populateText() {
     allHerosIds.forEach(function(val) {
   		if (val.name.toLowerCase().includes(searchText.toLowerCase())) {
         matchingHeros.push(val);
-        $('#searchResults').append(val.name+" , ");
+        $('#searchResults').append(($("<label>").addClass("searchResultsLabel").text(val.name)));
       }
   	});
     $('#searchResults').append(matchingHeros);
   }
-  $('#search').css('background-color', (matchingHeros.length > 0 && matchingHeros.length  <= 3 ) ? '#ccffcc': '#ffcccc');
+  $('#search').css('background-color', (matchingHeros.length > 0 && matchingHeros.length  <= 10 ) ? '#ccffcc': '#ffcccc');
 }
 
+
+function resultLabelClicked () {
+  var findStr = $(this).text()
+  $('#search').val(findStr);
+  var index =  matchingHeros.findIndex(function (element){
+    if (element.name === findStr) return element;
+  });
+  matchingHeros = matchingHeros[index];
+  $('#searchResults').empty().append(matchingHeros.name);
+}
 
 
 
