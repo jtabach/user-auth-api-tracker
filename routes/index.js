@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	var userToken = req.cookies.mytoken;
 	console.log("User Token:", userToken);
 	if (userToken) {
-		return res.redirect('/pokemon');
+		return res.redirect('/marvel');
 	}
   res.render('index', { title: "Cade's App" });
 });
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 router.get('/login', function(req, res, next) {
 	var userToken = req.cookies.mytoken;
 	if (userToken) {
-		return res.redirect('/pokemon');
+		return res.redirect('/marvel');
 	}
   res.render('login');
 });
@@ -24,7 +24,7 @@ router.get('/login', function(req, res, next) {
 router.get('/register', function(req, res, next) {
 	var userToken = req.cookies.mytoken;
 	if (userToken) {
-		return res.redirect('/pokemon');
+		return res.redirect('/marvel');
 	}
   res.render('register');
 });

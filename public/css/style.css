@@ -7,12 +7,13 @@
 }
 
 .container-fluid {
-	background: url('/img/ice-landing.jpg') no-repeat;
+	background: url('/img/marvel.jpg') no-repeat;
 	background-size: cover;
 	background-position: center top;
 	height: 700px;
 	font-family: 'Russo One', sans-serif;
 	text-align: center;
+	opacity: .9;
 }
 
 h1 {

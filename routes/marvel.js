@@ -1,7 +1,6 @@
-//http://api.sportradar.us/nhl-t1/games/2015/reg/schedule.json?api_key=[your_api_key]
+// ddb1730843a0168c7d771db9a99a1499
 
-
-
+// 3d08dd81101ddeded33c328809f4d09f6392f601
 
 var express = require('express');
 var router = express.Router();
