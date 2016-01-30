@@ -13,7 +13,9 @@ function getCharacter() {
   if (typeof matchingHeros || matchingHeros.length > 0 && matchingHeros.length  <= 10 ) {
   	$.post('/marvel/character', {id: (matchingHeros[0]) ? matchingHeros[0].id : matchingHeros.id})
   	.success(function(char){
-  		appendDom();
+      $('#search').val("");
+      $('#searchResults').text("");
+      appendDom();
   	})
   	.fail(function(err) {
   		console.log("err:", err);
@@ -37,7 +39,7 @@ function appendDom() {
   			var $img = $('<img>').attr('src', image);
   			var $descr = $('<p>').text(description);
   			var $more = $('<a>').attr('href', moreinfo).text('See Comics');
-  			$('.chars').append($name).append($img).append($descr).append($more);
+  			$('.chars').prepend($more).prepend($descr).prepend($img).prepend($name);
   		});
     });
 }
@@ -67,6 +69,7 @@ function resultLabelClicked () {
   });
   matchingHeros = matchingHeros[index];
   $('#searchResults').empty().append(matchingHeros.name);
+  $('#search').css('background-color', '#ccffcc');
 }
 
 
