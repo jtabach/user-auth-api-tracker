@@ -1,3 +1,20 @@
 #login, #register {
 	display: none;
 }
+
+#logout {
+	display: inherit;
+}
+
+.container-fluid {
+	background: white;
+}
+
+h1 {
+	color: black;
+}
+
+img {
+	height: 200px;
+	width: 200px;
+}

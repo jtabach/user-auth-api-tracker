@@ -17,7 +17,7 @@ function loginUser(e) {
 
   $.post('/users/login', {email: email, password: password})
   .success(function(data) {
-    location.href = '/pokemon';
+    location.href = '/marvel';
   })
   .fail(function(err) {
     alert('Error.  Check console.');

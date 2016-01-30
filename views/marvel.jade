@@ -1,15 +1,19 @@
 extends layout
 
 block styles
-  link(rel='stylesheet', href='/css/pokemon.css')
+  link(rel='stylesheet', href='/css/marvel.css')
 block content
-  .container-fluid#landing
-    h1= title
-    p Welcome to #{title}
-    p Pokemon Page
+  h1 Marvel Team
+  button Get Character
+  br
+  br
+  img
+  .descr
+  a.comic
+
 
 
 
 block scripts
   script(src='/lib/firebase/firebase.js')
-  script(src="/js/index.js")
+  script(src="/js/marvel.js")
