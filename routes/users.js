@@ -10,6 +10,7 @@ var User = require('../models/user');
 
 var ref = new Firebase('https://user-diet-tracker.firebaseio.com/');
 
+
 router.post('/register', function(req, res, next) {
   ref.createUser(req.body, function(err, userData) {
     if(err) return res.status(400).send(err);

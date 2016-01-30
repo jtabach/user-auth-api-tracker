@@ -14,14 +14,24 @@ function getCharacter() {
 
 	$.get('/marvel/character')
 	.success(function(char){
-		var data = char.data.results["0"];
-		var comiclink = data.urls[2].url;
-		var thumbnail = data.thumbnail.path+".jpg";
-		$('img').attr('src', thumbnail);
-		$('.descr').text(data.description);
-		$('.comic').attr('href', comiclink).text('See Comics');
-		console.log(comiclink);
-		console.log(data);
+		console.log(char);
+		char.forEach(function(avenger, index) {
+			var name = avenger.name;
+			var image = avenger.image;
+			var description = avenger.description;
+			var moreinfo = avenger.moreinfo;
+			var $name = $('<h2>').text(name);
+			var $img = $('<img>').attr('src', image);
+			var $descr = $('<p>').text(description);
+			var $more = $('<a>').attr('href', moreinfo).text('See Comics');
+			$('.chars').append($name).append($img).append($descr).append($more);
+		});
+		
+
+		
+		// console.log(comiclink);
+		// console.log(data);
+		// console.log(name);
 	})
 	.fail(function(err) {
 		console.log("err:", err);

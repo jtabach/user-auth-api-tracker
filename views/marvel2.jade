@@ -3,10 +3,9 @@ extends layout
 block styles
   link(rel='stylesheet', href='/css/marvel.css')
 block content
-  h1 Marvel Team
-  button Get Character
-  br
-  .chars
+  div
+    each char in character
+      h1=char.name
 
 
 
