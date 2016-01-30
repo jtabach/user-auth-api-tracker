@@ -9,30 +9,34 @@ var router = express.Router();
 
 
 var User = require('../models/user');
+var List = require('../models/list');
 
 var authMiddleware = require('../config/auth');
 
 router.use(authMiddleware);
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-	// if(req.user){
 	return  res.render('marvel', req.user);
-
-		
-	// }
-	// res.redirect('login');
 });
 
-router.get('/show', function(req, res, next) {
+router.get('/', function(req, res, next) {
 	res.render('marvel');
 });
 
-router.get('/character', authMiddleware, function(req, res, next) {
+router.get('/characters', function(req, res) {
+	User.findById(req.user._id, function(err, user) {
+		res.send(user.character);
+
+	});
+})
+
+router.post('/character', authMiddleware, function(req, res, next) {
+	// console.log("name:", req.body.name);
+	var charId = req.body.name;
 	console.log(req.user._id);
 	var ts = Date.now();
 	var hash = md5(ts+'3d08dd81101ddeded33c328809f4d09f6392f601'+'ddb1730843a0168c7d771db9a99a1499')
-	var url = `http://gateway.marvel.com:80/v1/public/characters/1009610?ts=${ts}&apikey=ddb1730843a0168c7d771db9a99a1499&hash=${hash}`;
+	var url = `http://gateway.marvel.com:80/v1/public/characters/${charId}?ts=${ts}&apikey=ddb1730843a0168c7d771db9a99a1499&hash=${hash}`;
 
 	request(url, function(error, response, body) {
 		var data = JSON.parse(body).data.results["0"];
@@ -54,8 +58,29 @@ router.get('/character', authMiddleware, function(req, res, next) {
 	});
 });
 
-router.post('/', function(req, res, next) {
-  console.log('Get char');
+router.get('/poop', function(req, res, next) {
+	var ts = Date.now();
+	var hash = md5(ts+'3d08dd81101ddeded33c328809f4d09f6392f601'+'ddb1730843a0168c7d771db9a99a1499')
+	var url = `http://gateway.marvel.com:80/v1/public/characters?limit=100&offset=1385&ts=${ts}&apikey=ddb1730843a0168c7d771db9a99a1499&hash=${hash}`;
+	request(url, function(error, response, body) {
+		var data = JSON.parse(body);
+		// var heros = data["data"]["results"];
+	 //  	var avengers = heros.map(function(val) {
+	 //  		return obj = {
+	 //  			name: val.name,
+	 //  			id: val.id
+	 //  		};
+	 //  	});
+	  	res.send(data);
+	});
 });
+
+
+// router.post('/', function(req, res, next) {
+//   console.log('Get char');
+// });
+
+
+
 
 module.exports = router;
