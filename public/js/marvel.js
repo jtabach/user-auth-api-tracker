@@ -28,7 +28,6 @@ function appendDom() {
     .done(function(chars){
     	$('.chars').empty();
   		chars.forEach(function(avenger, index) {
-        console.log(avenger);
   			var name = avenger.name;
   			var image = avenger.image;
   			var description = avenger.description.trim() || "No description";
@@ -55,7 +54,55 @@ function populateText() {
   	});
     $('#searchResults').append(matchingHeros);
   }
+  $('#search').css('background-color', (matchingHeros.length > 0 && matchingHeros.length  <= 3 ) ? '#ccffcc': '#ffcccc');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

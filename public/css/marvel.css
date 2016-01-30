@@ -23,3 +23,7 @@ textarea {
 	width: 90%;
 	height: auto;
 }
+
+#search {
+	background-color: #ffcccc;
+}
