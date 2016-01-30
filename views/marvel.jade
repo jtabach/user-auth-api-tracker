@@ -4,11 +4,10 @@ block styles
   link(rel='stylesheet', href='/css/marvel.css')
 block content
   h1 Marvel Team
-  select#newChar
-      option 1009609
-      option 1009610
+  input#search(type="text", placeholder="search here")
   button Get Character
   br
+  #searchResults
   .chars
 
 

@@ -1,62 +1,61 @@
-// ddb1730843a0168c7d771db9a99a1499
-
-// 3d08dd81101ddeded33c328809f4d09f6392f601
-
-
-
 
 $(function() {
 
-  $('button').on('click', getCharacter);
   appendDom();
-  // $.get('/marvel/poop', function(chars){
-  	
-  // 	var heros = chars["data"]["results"];
-  var i=0;
-  	allHerosIds.forEach(function(val) {
-  		console.log ( "	{name:",val.name,",","id:",val.id,"},");
-  		i++;
-  	});
-  	console.log(i);
-  // });
+  $('button').on('click', getCharacter);
+	$('#search').keyup(populateText);
 });
 
-// http://gateway.marvel.com/v1/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150
+var matchingHeros;
 
 function getCharacter() {
-	var newChar = $('#newChar').val();
-	var reg = newChar.replace(' ', '%20');
-	console.log(newChar);
-	$.post('/marvel/character', 	{name:reg})
-	.success(function(char){
-		appendDom();
-	})
-	.fail(function(err) {
-		console.log("err:", err);
-	});
+  if (matchingHeros.length > 0 && matchingHeros.length  <= 3 ) {
+  	$.post('/marvel/character', {id:matchingHeros[0].id})
+  	.success(function(char){
+  		appendDom();
+  	})
+  	.fail(function(err) {
+  		console.log("err:", err);
+  	});
+  }
+  else {
+    $('#searchResults').text("Invalid Request");
+  }
 }
 
 function appendDom() {
 	$.get('/marvel/characters')
     .done(function(chars){
     	$('.chars').empty();
-		chars.forEach(function(avenger, index) {
-			var name = avenger.name;
-			var image = avenger.image;
-			var description = avenger.description;
-			var moreinfo = avenger.moreinfo;
-			var $name = $('<h2>').text(name);
-			var $img = $('<img>').attr('src', image);
-			var $descr = $('<p>').text(description);
-			var $more = $('<a>').attr('href', moreinfo).text('See Comics');
-			$('.chars').append($name).append($img).append($descr).append($more);
-		});
+  		chars.forEach(function(avenger, index) {
+        console.log(avenger);
+  			var name = avenger.name;
+  			var image = avenger.image;
+  			var description = avenger.description.trim() || "No description";
+  			var moreinfo = avenger.moreinfo;
+  			var $name = $('<h2>').text(name);
+  			var $img = $('<img>').attr('src', image);
+  			var $descr = $('<p>').text(description);
+  			var $more = $('<a>').attr('href', moreinfo).text('See Comics');
+  			$('.chars').append($name).append($img).append($descr).append($more);
+  		});
     });
 }
 
-
-
-
+function populateText() {
+  $('#searchResults').empty()
+  var searchText = $(this).val();
+  if(searchText){ 
+    matchingHeros = [];
+    allHerosIds.forEach(function(val) {
+  		if (val.name.toLowerCase().includes(searchText.toLowerCase())) {
+        matchingHeros.push(val);
+        $('#searchResults').append(val.name+" , ");
+      }
+  	});
+    $('#searchResults').append(matchingHeros);
+  }
+}
 
 
 

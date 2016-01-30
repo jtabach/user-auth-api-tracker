@@ -31,9 +31,7 @@ router.get('/characters', function(req, res) {
 })
 
 router.post('/character', authMiddleware, function(req, res, next) {
-	// console.log("name:", req.body.name);
-	var charId = req.body.name;
-	console.log(req.user._id);
+	var charId = req.body.id;
 	var ts = Date.now();
 	var hash = md5(ts+'3d08dd81101ddeded33c328809f4d09f6392f601'+'ddb1730843a0168c7d771db9a99a1499')
 	var url = `http://gateway.marvel.com:80/v1/public/characters/${charId}?ts=${ts}&apikey=ddb1730843a0168c7d771db9a99a1499&hash=${hash}`;
